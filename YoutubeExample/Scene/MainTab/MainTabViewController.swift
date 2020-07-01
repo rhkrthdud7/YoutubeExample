@@ -9,6 +9,7 @@
 import RIBs
 import RxSwift
 import UIKit
+import SwiftyColor
 
 protocol MainTabPresentableListener: class {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -19,4 +20,22 @@ protocol MainTabPresentableListener: class {
 final class MainTabViewController: UITabBarController, MainTabPresentable, MainTabViewControllable {
 
     weak var listener: MainTabPresentableListener?
+    
+    private enum Color {
+        static let tabBarTint = 0x282828.color
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tabBar.tintColor = .white
+        tabBar.barTintColor = Color.tabBarTint
+    }
+
+    // MARK: - MainTabViewControllable
+    func setViewControllers(viewControllers: [ViewControllable], animated: Bool = false) {
+        let viewControllers = viewControllers.map { $0.uiviewController }
+        setViewControllers(viewControllers, animated: false)
+    }
+
 }

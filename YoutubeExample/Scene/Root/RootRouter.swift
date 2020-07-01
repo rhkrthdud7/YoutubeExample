@@ -39,7 +39,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         routeToMainTab()
     }
 
-    private func routeToMainTab() {
+    func routeToMainTab() {
         let mainTab = mainTabBuilder.build(withListener: interactor)
         attachChild(mainTab)
         self.mainTab = mainTab

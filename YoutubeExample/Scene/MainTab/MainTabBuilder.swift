@@ -33,10 +33,17 @@ final class MainTabBuilder: Builder<MainTabDependency>, MainTabBuildable {
     func build(withListener listener: MainTabListener) -> MainTabRouting {
         let component = MainTabComponent(dependency: dependency)
         let viewController = MainTabViewController()
+        viewController.tabBar.isOpaque = true
+        viewController.tabBar.isTranslucent = false
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .crossDissolve
         let interactor = MainTabInteractor(presenter: viewController)
         interactor.listener = listener
-        return MainTabRouter(interactor: interactor, viewController: viewController)
+        let homeBuilder = HomeBuilder(dependency: component)
+        return MainTabRouter(
+            interactor: interactor,
+            viewController: viewController,
+            homeBuilder: homeBuilder
+        )
     }
 }
