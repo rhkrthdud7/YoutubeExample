@@ -10,7 +10,7 @@ import RIBs
 import RxSwift
 
 protocol RootRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToMainTab()
 }
 
 protocol RootPresentable: Presentable {
@@ -37,10 +37,17 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        
+        
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+
+    // MARK: - SplashListener
+    func didFinishSplashAnimation() {
+        router?.routeToMainTab()
     }
 }

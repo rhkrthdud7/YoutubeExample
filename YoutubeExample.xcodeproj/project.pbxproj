@@ -22,6 +22,11 @@
 		9CC3E52124AC2850003EE1AF /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E51D24AC2850003EE1AF /* HomeBuilder.swift */; };
 		9CC3E52224AC2850003EE1AF /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E51E24AC2850003EE1AF /* HomeInteractor.swift */; };
 		9CC3E52424AC286F003EE1AF /* MainTabComponent+Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52324AC286F003EE1AF /* MainTabComponent+Home.swift */; };
+		9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52924ACAC82003EE1AF /* SplashRouter.swift */; };
+		9CC3E52E24ACAC82003EE1AF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52A24ACAC82003EE1AF /* SplashViewController.swift */; };
+		9CC3E52F24ACAC82003EE1AF /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */; };
+		9CC3E53024ACAC82003EE1AF /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */; };
+		9CC3E53224ACAC9F003EE1AF /* RootComponent+Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E53124ACAC9F003EE1AF /* RootComponent+Splash.swift */; };
 		9CEE727D24AADC2E00F649EC /* ProModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; };
 		9CEE727E24AADC2E00F649EC /* ProModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9CEE729124AAE48300F649EC /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729024AAE48300F649EC /* AppComponent.swift */; };
@@ -63,6 +68,11 @@
 		9CC3E51D24AC2850003EE1AF /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
 		9CC3E51E24AC2850003EE1AF /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		9CC3E52324AC286F003EE1AF /* MainTabComponent+Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabComponent+Home.swift"; sourceTree = "<group>"; };
+		9CC3E52924ACAC82003EE1AF /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		9CC3E52A24ACAC82003EE1AF /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
+		9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		9CC3E53124ACAC9F003EE1AF /* RootComponent+Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Splash.swift"; sourceTree = "<group>"; };
 		9CEE727C24AADC2E00F649EC /* ProModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ProModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEE729024AAE48300F649EC /* AppComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		9CEE729424AAE50700F649EC /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
@@ -144,6 +154,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		9CC3E52824ACAC6F003EE1AF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9CC3E52924ACAC82003EE1AF /* SplashRouter.swift */,
+				9CC3E52A24ACAC82003EE1AF /* SplashViewController.swift */,
+				9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */,
+				9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		9CEE727B24AADC2E00F649EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				9CEE729324AAE4BE00F649EC /* Root */,
+				9CC3E52824ACAC6F003EE1AF /* Splash */,
 				9CC3E50F24AB6B52003EE1AF /* MainTab */,
 				9CC3E51A24AC281D003EE1AF /* Home */,
 			);
@@ -180,6 +202,7 @@
 				9CEE729624AAE50700F649EC /* RootBuilder.swift */,
 				9CEE729524AAE50700F649EC /* RootViewController.swift */,
 				9CC3E51824AB6B61003EE1AF /* RootComponent+MainTab.swift */,
+				9CC3E53124ACAC9F003EE1AF /* RootComponent+Splash.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -258,7 +281,10 @@
 				9CC3E51924AB6B62003EE1AF /* RootComponent+MainTab.swift in Sources */,
 				9C4437B424AAD8A2002A0BFA /* ViewController.swift in Sources */,
 				9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */,
+				9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */,
 				9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */,
+				9CC3E53024ACAC82003EE1AF /* SplashInteractor.swift in Sources */,
+				9CC3E52F24ACAC82003EE1AF /* SplashBuilder.swift in Sources */,
 				9CEE729824AAE50700F649EC /* RootRouter.swift in Sources */,
 				9CC3E52024AC2850003EE1AF /* HomeViewController.swift in Sources */,
 				9CEE729924AAE50700F649EC /* RootViewController.swift in Sources */,
@@ -269,10 +295,12 @@
 				9CC3E51F24AC2850003EE1AF /* HomeRouter.swift in Sources */,
 				9C4437B024AAD8A2002A0BFA /* AppDelegate.swift in Sources */,
 				9CC3E52124AC2850003EE1AF /* HomeBuilder.swift in Sources */,
+				9CC3E53224ACAC9F003EE1AF /* RootComponent+Splash.swift in Sources */,
 				9CEE729B24AAE50700F649EC /* RootInteractor.swift in Sources */,
 				9C4437B224AAD8A2002A0BFA /* SceneDelegate.swift in Sources */,
 				9CC3E51724AB6B52003EE1AF /* MainTabRouter.swift in Sources */,
 				9CC3E52224AC2850003EE1AF /* HomeInteractor.swift in Sources */,
+				9CC3E52E24ACAC82003EE1AF /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
