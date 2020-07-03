@@ -88,6 +88,12 @@ extension HomeViewController {
         viewBarContent.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        let navigationBar = NavigationBar(subviews: [])
+        viewBarContent.addSubview(navigationBar)
+        navigationBar.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
 
         view.addSubview(viewContent)
         viewContent.snp.makeConstraints {
