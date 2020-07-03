@@ -7,6 +7,7 @@
 //
 
 import RIBs
+import UIKit
 
 protocol MainTabInteractable: Interactable, HomeListener {
     var router: MainTabRouting? { get set }
@@ -44,8 +45,10 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
         let home = homeBuilder.build(withListener: interactor)
         attachChild(home)
         self.home = home
-
-        viewController.setViewControllers(viewControllers: [home.viewControllable], animated: false)
+        
+        let navHome = UINavigationController(root: home.viewControllable)
+        navHome.setNavigationBarHidden(true, animated: true)
+        viewController.setViewControllers(viewControllers: [navHome], animated: false)
     }
 
 }

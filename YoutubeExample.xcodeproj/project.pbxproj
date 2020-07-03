@@ -27,6 +27,7 @@
 		9CC3E52F24ACAC82003EE1AF /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */; };
 		9CC3E53024ACAC82003EE1AF /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */; };
 		9CC3E53224ACAC9F003EE1AF /* RootComponent+Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E53124ACAC9F003EE1AF /* RootComponent+Splash.swift */; };
+		9CC3E53624AD7838003EE1AF /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E53424ACBFF4003EE1AF /* UINavigationController+.swift */; };
 		9CEE727D24AADC2E00F649EC /* ProModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; };
 		9CEE727E24AADC2E00F649EC /* ProModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9CEE729124AAE48300F649EC /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729024AAE48300F649EC /* AppComponent.swift */; };
@@ -73,6 +74,7 @@
 		9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
 		9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		9CC3E53124ACAC9F003EE1AF /* RootComponent+Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Splash.swift"; sourceTree = "<group>"; };
+		9CC3E53424ACBFF4003EE1AF /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		9CEE727C24AADC2E00F649EC /* ProModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ProModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEE729024AAE48300F649EC /* AppComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		9CEE729424AAE50700F649EC /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				9CEE728F24AAE46200F649EC /* App */,
 				9CC3E50224AB604B003EE1AF /* Model */,
+				9CC3E53324ACBFC7003EE1AF /* Extension */,
 				9CEE729224AAE4A600F649EC /* Scene */,
 				9C4437B324AAD8A2002A0BFA /* ViewController.swift */,
 				9C4437B824AAD8A4002A0BFA /* Assets.xcassets */,
@@ -163,6 +166,14 @@
 				9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		9CC3E53324ACBFC7003EE1AF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9CC3E53424ACBFF4003EE1AF /* UINavigationController+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		9CEE727B24AADC2E00F649EC /* Frameworks */ = {
@@ -283,6 +294,7 @@
 				9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */,
 				9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */,
 				9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */,
+				9CC3E53624AD7838003EE1AF /* UINavigationController+.swift in Sources */,
 				9CC3E53024ACAC82003EE1AF /* SplashInteractor.swift in Sources */,
 				9CC3E52F24ACAC82003EE1AF /* SplashBuilder.swift in Sources */,
 				9CEE729824AAE50700F649EC /* RootRouter.swift in Sources */,
