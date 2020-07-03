@@ -41,6 +41,21 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     let viewBarContent = UIView().then {
         $0.backgroundColor = .clear
     }
+    
+    let buttonUpload = HighlightingButton().then {
+        $0.setImage(#imageLiteral(resourceName: "icon_video"), for: .normal)
+        $0.adjustsImageWhenHighlighted = false
+    }
+    
+    let buttonSearch = HighlightingButton().then {
+        $0.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+        $0.adjustsImageWhenHighlighted = false
+    }
+    
+    let buttonAccount = HighlightingButton().then {
+        $0.setImage(#imageLiteral(resourceName: "icon_profile"), for: .normal)
+        $0.adjustsImageWhenHighlighted = false
+    }
 
     let viewContent = UIView().then {
         $0.backgroundColor = Color.darkBlack
@@ -89,7 +104,7 @@ extension HomeViewController {
             $0.edges.equalToSuperview()
         }
         
-        let navigationBar = NavigationBar(subviews: [])
+        let navigationBar = NavigationBar(subviews: [buttonUpload, buttonSearch, buttonAccount])
         viewBarContent.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
             $0.edges.equalToSuperview()
