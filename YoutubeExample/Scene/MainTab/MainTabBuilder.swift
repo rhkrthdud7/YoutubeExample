@@ -15,7 +15,15 @@ protocol MainTabDependency: Dependency {
 
 final class MainTabComponent: Component<MainTabDependency> {
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    let videoService: VideoServiceType
+
+    init(
+        dependency: MainTabDependency,
+        videoService: VideoServiceType
+    ) {
+        self.videoService = videoService
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
@@ -30,8 +38,14 @@ final class MainTabBuilder: Builder<MainTabDependency>, MainTabBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: MainTabListener) -> MainTabRouting {
-        let component = MainTabComponent(dependency: dependency)
+    func build(
+        withListener listener: MainTabListener
+    ) -> MainTabRouting {
+        let videoService = VideoService()
+        let component = MainTabComponent(
+            dependency: dependency,
+            videoService: videoService
+        )
         let viewController = MainTabViewController()
         viewController.tabBar.isOpaque = true
         viewController.tabBar.isTranslucent = false

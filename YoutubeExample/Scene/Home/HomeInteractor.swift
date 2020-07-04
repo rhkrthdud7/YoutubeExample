@@ -28,9 +28,15 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     weak var router: HomeRouting?
     weak var listener: HomeListener?
 
+    let videoService: VideoServiceType
+
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: HomePresentable) {
+    init(
+        presenter: HomePresentable,
+        videoService: VideoServiceType
+    ) {
+        self.videoService = videoService
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -49,21 +55,27 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     var initialState = State()
 
     struct State {
-        var data: [String] = Array(1...40).map(String.init)
+        var videos: [Video] = []
         var text: String = ""
     }
     enum Action {
+        case refresh
         case tapUpload
         case tapSearch
         case tapAccount
         case tapCell(Int)
     }
     enum Mutation {
+        case setVideos([Video])
         case printLog(String)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .refresh:
+            return videoService
+                .fetchVideos()
+                .map { Mutation.setVideos($0) }
         case .tapUpload:
             return Observable.just(Mutation.printLog("upload"))
         case .tapSearch:
@@ -78,6 +90,8 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
+        case .setVideos(let videos):
+            state.videos = videos
         case .printLog(let string):
             state.text = string
         }

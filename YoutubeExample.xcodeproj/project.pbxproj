@@ -45,6 +45,8 @@
 		9CE7008024B07A89001E4488 /* 21475.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE7007824B07A89001E4488 /* 21475.png */; };
 		9CE7008124B07A89001E4488 /* 5317.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE7007924B07A89001E4488 /* 5317.png */; };
 		9CE7008224B07A89001E4488 /* 35866.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE7007A24B07A89001E4488 /* 35866.png */; };
+		9CE7008524B07AB6001E4488 /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE7008424B07AB6001E4488 /* VideoService.swift */; };
+		9CE7008724B07ABB001E4488 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE7008624B07ABB001E4488 /* Video.swift */; };
 		9CEE727D24AADC2E00F649EC /* ProModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; };
 		9CEE727E24AADC2E00F649EC /* ProModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEE727C24AADC2E00F649EC /* ProModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9CEE729124AAE48300F649EC /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729024AAE48300F649EC /* AppComponent.swift */; };
@@ -109,6 +111,8 @@
 		9CE7007824B07A89001E4488 /* 21475.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 21475.png; sourceTree = "<group>"; };
 		9CE7007924B07A89001E4488 /* 5317.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5317.png; sourceTree = "<group>"; };
 		9CE7007A24B07A89001E4488 /* 35866.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 35866.png; sourceTree = "<group>"; };
+		9CE7008424B07AB6001E4488 /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
+		9CE7008624B07ABB001E4488 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		9CEE727C24AADC2E00F649EC /* ProModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ProModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEE729024AAE48300F649EC /* AppComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		9CEE729424AAE50700F649EC /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
@@ -150,8 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				9CEE728F24AAE46200F649EC /* App */,
-				9CC3E50224AB604B003EE1AF /* Model */,
 				9CC3E53324ACBFC7003EE1AF /* Extension */,
+				9CC3E50224AB604B003EE1AF /* Model */,
+				9CE7008324B07AB6001E4488 /* Service */,
 				9CEE729224AAE4A600F649EC /* Scene */,
 				9C7434AC24AED5C500479D52 /* View */,
 				9CE7006024B07A56001E4488 /* Resource */,
@@ -174,6 +179,7 @@
 		9CC3E50224AB604B003EE1AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9CE7008624B07ABB001E4488 /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +263,14 @@
 				9CE7006724B07A75001E4488 /* 41170.mp4 */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		9CE7008324B07AB6001E4488 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9CE7008424B07AB6001E4488 /* VideoService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		9CEE727B24AADC2E00F649EC /* Frameworks */ = {
@@ -392,6 +406,7 @@
 				9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */,
 				9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */,
 				9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */,
+				9CE7008724B07ABB001E4488 /* Video.swift in Sources */,
 				9C7434AE24AED5C500479D52 /* NavigationBar.swift in Sources */,
 				9CC3E53624AD7838003EE1AF /* UINavigationController+.swift in Sources */,
 				9CC3E53024ACAC82003EE1AF /* SplashInteractor.swift in Sources */,
@@ -401,6 +416,7 @@
 				9CEE729924AAE50700F649EC /* RootViewController.swift in Sources */,
 				9CC3E52424AC286F003EE1AF /* MainTabComponent+Home.swift in Sources */,
 				9CC3E51524AB6B52003EE1AF /* MainTabInteractor.swift in Sources */,
+				9CE7008524B07AB6001E4488 /* VideoService.swift in Sources */,
 				9CC3E51624AB6B52003EE1AF /* MainTabViewController.swift in Sources */,
 				9CEE729124AAE48300F649EC /* AppComponent.swift in Sources */,
 				9CC3E51F24AC2850003EE1AF /* HomeRouter.swift in Sources */,

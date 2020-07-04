@@ -13,6 +13,7 @@ import ReactorKit
 import SnapKit
 import UIKit
 import Then
+import RxViewController
 
 protocol HomePresentableListener: class {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -73,6 +74,11 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
 
     func bind(reactor: HomeInteractor) {
+        rx.viewWillAppear
+            .take(1)
+            .map { _ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         buttonUpload.rx.tap
             .map { Reactor.Action.tapUpload }
             .bind(to: reactor.action)
@@ -95,9 +101,9 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
             .subscribe(onNext: { print($0) })
             .disposed(by: disposeBag)
         reactor.state
-            .map { $0.data }
-            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { row, data, cell in
-                cell.textLabel?.text = data
+            .map { $0.videos }
+            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { row, video, cell in
+                cell.textLabel?.text = video.id
                 cell.textLabel?.textColor = .white
                 cell.backgroundColor = Color.darkBlack
                 cell.selectionStyle = .none

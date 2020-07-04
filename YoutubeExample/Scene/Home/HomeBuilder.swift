@@ -9,13 +9,13 @@
 import RIBs
 
 protocol HomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var videoService: VideoServiceType { get }
 }
 
 final class HomeComponent: Component<HomeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var videoService: VideoServiceType {
+        return dependency.videoService
+    }
 }
 
 // MARK: - Builder
@@ -31,11 +31,14 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     }
 
     func build(withListener listener: HomeListener) -> HomeRouting {
-//        let component = HomeComponent(dependency: dependency)
+        let component = HomeComponent(dependency: dependency)
         let viewController = HomeViewController()
         viewController.tabBarItem.image = #imageLiteral(resourceName: "icon_home")
         viewController.tabBarItem.title = "홈"
-        let interactor = HomeInteractor(presenter: viewController)
+        let interactor = HomeInteractor(
+            presenter: viewController,
+            videoService: component.videoService
+        )
         interactor.listener = listener
         viewController.reactor = interactor
         return HomeRouter(interactor: interactor, viewController: viewController)
