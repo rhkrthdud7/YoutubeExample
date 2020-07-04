@@ -31,12 +31,13 @@ final class HomeBuilder: Builder<HomeDependency>, HomeBuildable {
     }
 
     func build(withListener listener: HomeListener) -> HomeRouting {
-        let component = HomeComponent(dependency: dependency)
+//        let component = HomeComponent(dependency: dependency)
         let viewController = HomeViewController()
         viewController.tabBarItem.image = #imageLiteral(resourceName: "icon_home")
         viewController.tabBarItem.title = "홈"
         let interactor = HomeInteractor(presenter: viewController)
         interactor.listener = listener
+        viewController.reactor = interactor
         return HomeRouter(interactor: interactor, viewController: viewController)
     }
 }

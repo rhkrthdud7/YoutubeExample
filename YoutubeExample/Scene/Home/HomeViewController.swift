@@ -9,8 +9,9 @@
 import RIBs
 import RxSwift
 import RxCocoa
-import UIKit
+import ReactorKit
 import SnapKit
+import UIKit
 import Then
 
 protocol HomePresentableListener: class {
@@ -19,73 +20,89 @@ protocol HomePresentableListener: class {
     // interactor class.
 }
 
-final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable {
+final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, View {
 
     weak var listener: HomePresentableListener?
 
-    let disposeBag = DisposeBag()
-    var constraintNavTop: NSLayoutConstraint?
+    var disposeBag = DisposeBag()
 
     private enum Color {
         static let lightBlack = 0x282828.color
         static let darkBlack = 0x212121.color
     }
-    private enum Metrics {
+    private enum Metric {
         static let navigationBarHeight: CGFloat = 44
     }
 
     let viewNavigationBar = UIView().then {
         $0.backgroundColor = Color.lightBlack
     }
-
     let viewBarContent = UIView().then {
         $0.backgroundColor = .clear
     }
-    
     let buttonUpload = HighlightingButton().then {
         $0.setImage(#imageLiteral(resourceName: "icon_video"), for: .normal)
         $0.adjustsImageWhenHighlighted = false
     }
-    
     let buttonSearch = HighlightingButton().then {
         $0.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         $0.adjustsImageWhenHighlighted = false
     }
-    
     let buttonAccount = HighlightingButton().then {
         $0.setImage(#imageLiteral(resourceName: "icon_profile"), for: .normal)
         $0.adjustsImageWhenHighlighted = false
     }
-
     let viewContent = UIView().then {
         $0.backgroundColor = Color.darkBlack
     }
-
     lazy var tableView = UITableView().then {
-        $0.delegate = self
-        $0.dataSource = self
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         $0.backgroundColor = Color.darkBlack
     }
+    var constraintNavTop: NSLayoutConstraint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViews()
-        setupBindings()
+        setupNavigation()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-    let data: [String] = [
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-    ]
+    func bind(reactor: HomeInteractor) {
+        buttonUpload.rx.tap
+            .map { Reactor.Action.tapUpload }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        buttonSearch.rx.tap
+            .map { Reactor.Action.tapSearch }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        buttonAccount.rx.tap
+            .map { Reactor.Action.tapAccount }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        tableView.rx.itemSelected
+            .map { Reactor.Action.tapCell($0.row) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+
+        reactor.state
+            .map { $0.text }
+            .subscribe(onNext: { print($0) })
+            .disposed(by: disposeBag)
+        reactor.state
+            .map { $0.data }
+            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { row, data, cell in
+                cell.textLabel?.text = data
+                cell.textLabel?.textColor = .white
+                cell.backgroundColor = Color.darkBlack
+                cell.selectionStyle = .none
+            }.disposed(by: disposeBag)
+    }
 }
 
 extension HomeViewController {
@@ -97,13 +114,13 @@ extension HomeViewController {
         constraintNavTop?.isActive = true
         viewNavigationBar.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(Metrics.navigationBarHeight)
+            $0.height.equalTo(Metric.navigationBarHeight)
         }
         viewNavigationBar.addSubview(viewBarContent)
         viewBarContent.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+
         let navigationBar = NavigationBar(subviews: [buttonUpload, buttonSearch, buttonAccount])
         viewBarContent.addSubview(navigationBar)
         navigationBar.snp.makeConstraints {
@@ -123,12 +140,12 @@ extension HomeViewController {
 
     }
 
-    func setupBindings() {
+    func setupNavigation() {
         guard let constraint = constraintNavTop else { return }
         let viewNavigationBar = self.viewNavigationBar
         let viewBarContent = self.viewBarContent
         let constraintConstant = PublishSubject<CGFloat>()
-        let height = Metrics.navigationBarHeight
+        let height = Metric.navigationBarHeight
 
         // 현재 오프셋
         let contentOffset = tableView.rx.contentOffset
@@ -205,21 +222,5 @@ extension HomeViewController {
                 }
             })
             .disposed(by: disposeBag)
-
     }
-}
-
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = data[indexPath.row]
-        cell.textLabel?.textColor = .white
-        cell.backgroundColor = Color.darkBlack
-        return cell
-    }
-
 }

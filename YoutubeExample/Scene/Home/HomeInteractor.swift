@@ -8,6 +8,7 @@
 
 import RIBs
 import RxSwift
+import ReactorKit
 
 protocol HomeRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -22,7 +23,7 @@ protocol HomeListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
+final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener, Reactor {
 
     weak var router: HomeRouting?
     weak var listener: HomeListener?
@@ -43,4 +44,44 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         super.willResignActive()
         // TODO: Pause any business logic.
     }
+
+    // MARK: - Reactor
+    var initialState = State()
+
+    struct State {
+        var data: [String] = Array(1...40).map(String.init)
+        var text: String = ""
+    }
+    enum Action {
+        case tapUpload
+        case tapSearch
+        case tapAccount
+        case tapCell(Int)
+    }
+    enum Mutation {
+        case printLog(String)
+    }
+
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .tapUpload:
+            return Observable.just(Mutation.printLog("upload"))
+        case .tapSearch:
+            return Observable.just(Mutation.printLog("search"))
+        case .tapAccount:
+            return Observable.just(Mutation.printLog("account"))
+        case .tapCell(let row):
+            return Observable.just(Mutation.printLog("row: \(row)"))
+        }
+    }
+
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        switch mutation {
+        case .printLog(let string):
+            state.text = string
+        }
+        return state
+    }
+
 }
