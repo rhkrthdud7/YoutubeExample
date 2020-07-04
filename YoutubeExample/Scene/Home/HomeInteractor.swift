@@ -56,9 +56,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
 
     struct State {
         var videos: [Video] = []
-        var text: String = ""
+        var isLoading: Bool = false
     }
     enum Action {
+        case initialLoad
         case refresh
         case tapUpload
         case tapSearch
@@ -67,23 +68,22 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     }
     enum Mutation {
         case setVideos([Video])
-        case printLog(String)
+        case setLoading(Bool)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .initialLoad:
+            return fetchVideos()
         case .refresh:
-            return videoService
-                .fetchVideos()
-                .map { Mutation.setVideos($0) }
-        case .tapUpload:
-            return Observable.just(Mutation.printLog("upload"))
-        case .tapSearch:
-            return Observable.just(Mutation.printLog("search"))
-        case .tapAccount:
-            return Observable.just(Mutation.printLog("account"))
-        case .tapCell(let row):
-            return Observable.just(Mutation.printLog("row: \(row)"))
+            guard !currentState.isLoading else { return .empty() }
+            return Observable.concat([
+                Observable.just(Mutation.setLoading(true)),
+                fetchVideos().delay(.seconds(2), scheduler: MainScheduler.instance),
+                Observable.just(Mutation.setLoading(false))
+                ])
+        case .tapUpload, .tapSearch, .tapAccount, .tapCell:
+            return .empty()
         }
     }
 
@@ -92,10 +92,16 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         switch mutation {
         case .setVideos(let videos):
             state.videos = videos
-        case .printLog(let string):
-            state.text = string
+        case .setLoading(let isLoading):
+            state.isLoading = isLoading
         }
         return state
+    }
+    
+    private func fetchVideos() -> Observable<Mutation> {
+        return videoService
+            .fetchVideos()
+            .map { Mutation.setVideos($0) }
     }
 
 }

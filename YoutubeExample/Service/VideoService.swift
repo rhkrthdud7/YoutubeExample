@@ -15,6 +15,6 @@ protocol VideoServiceType {
 
 class VideoService: VideoServiceType {
     func fetchVideos() -> Observable<[Video]> {
-        return .just(Video.allVideos)
+        return .just(Video.allVideos.shuffled())
     }
 }

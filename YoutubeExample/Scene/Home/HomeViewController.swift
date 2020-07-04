@@ -33,6 +33,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     private enum Metric {
         static let navigationBarHeight: CGFloat = 44
+        static let loadingOffset: CGFloat = 64
     }
 
     let viewNavigationBar = UIView().then {
@@ -60,6 +61,16 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         $0.backgroundColor = Color.darkBlack
     }
+    let refreshControl = UIRefreshControl().then {
+        $0.backgroundColor = .clear
+        $0.tintColor = .clear
+    }
+    let labelLoading = UILabel().then {
+        $0.text = "Loading"
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.backgroundColor = .clear
+    }
     var constraintNavTop: NSLayoutConstraint?
 
     override func viewDidLoad() {
@@ -74,9 +85,11 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
 
     func bind(reactor: HomeInteractor) {
+        let tableView = self.tableView
+        
         rx.viewWillAppear
             .take(1)
-            .map { _ in Reactor.Action.refresh }
+            .map { _ in Reactor.Action.initialLoad }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         buttonUpload.rx.tap
@@ -95,10 +108,26 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
             .map { Reactor.Action.tapCell($0.row) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        tableView.rx.didEndDragging
+            .filter { $0 }
+            .withLatestFrom(tableView.rx.contentOffset)
+            .filter { $0.y < -Metric.loadingOffset }
+            .map { _ in Reactor.Action.refresh }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
 
         reactor.state
-            .map { $0.text }
-            .subscribe(onNext: { print($0) })
+            .map { $0.isLoading }
+            .distinctUntilChanged()
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        reactor.state
+            .map { $0.isLoading }
+            .filter { !$0 }
+            .subscribe(onNext: { _ in
+                tableView.panGestureRecognizer.isEnabled = false
+                tableView.panGestureRecognizer.isEnabled = true
+            })
             .disposed(by: disposeBag)
         reactor.state
             .map { $0.videos }
@@ -144,6 +173,11 @@ extension HomeViewController {
             $0.edges.equalToSuperview()
         }
 
+        tableView.refreshControl = refreshControl
+        refreshControl.addSubview(labelLoading)
+        labelLoading.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 
     func setupNavigation() {
