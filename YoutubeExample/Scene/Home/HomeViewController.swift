@@ -152,6 +152,7 @@ extension HomeViewController {
         let viewBarContent = self.viewBarContent
         let constraintConstant = PublishSubject<CGFloat>()
         let height = Metric.navigationBarHeight
+        let tableView = self.tableView
 
         // 현재 오프셋
         let contentOffset = tableView.rx.contentOffset
@@ -165,6 +166,7 @@ extension HomeViewController {
 
         // scrollDown -> 네비게이션 위로(숨김)
         contentOffset
+            .filter { _ in tableView.contentSize.height > tableView.bounds.height }
             .withLatestFrom(scrollOffsetDiff) { ($0, $1) }
             .filter { $0.1 > 0 }
             .map { constraint.constant + $1 }
@@ -174,6 +176,7 @@ extension HomeViewController {
 
         // scrollUp -> 네비게이션 아래로(보이기) - y < 0 일때
         contentOffset
+            .filter { _ in tableView.contentSize.height > tableView.bounds.height }
             .withLatestFrom(scrollOffsetDiff) { ($0, $1) }
             .filter { (offset: CGPoint, diff: CGFloat) -> Bool in diff < 0 && offset.y < 0 }
             .map { constraint.constant + $1 }
@@ -218,6 +221,7 @@ extension HomeViewController {
 
         Observable.of(willEndDragging, didEndDragging,
             didEndDragging2, didScrollToTop).merge()
+            .filter { _ in tableView.contentSize.height > tableView.bounds.height }
             .subscribe(onNext: { constant in
                 UIView.animate(withDuration: 0.15, animations: {
                     viewBarContent.alpha = constant == 0 ? 1 : 0
