@@ -11,7 +11,7 @@ import RxSwift
 import ReactorKit
 import RxDataSources
 
-typealias VideoListSection = SectionModel<Void, VideoCellReactor>
+typealias VideoListSection = SectionModel<Int, VideoCellReactor>
 
 protocol HomeRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -106,7 +106,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
             .fetchVideos()
             .map({ videos in
                 let items = videos.map(VideoCellReactor.init)
-                let section = VideoListSection(model: Void(), items: items)
+                let section = VideoListSection(model: 0, items: items)
                 return .setVideos([section])
             })
     }

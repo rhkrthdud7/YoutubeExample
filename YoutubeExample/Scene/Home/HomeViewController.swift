@@ -97,7 +97,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
 
     func bind(reactor: HomeInteractor) {
         let tableView = self.tableView
-        
+
         rx.viewWillAppear
             .take(1)
             .map { _ in Reactor.Action.initialLoad }
@@ -142,6 +142,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
             .disposed(by: disposeBag)
         reactor.state
             .map { $0.videos }
+            .distinctUntilChanged()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
