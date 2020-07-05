@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Video {
+struct Video: Equatable {
+    static func == (lhs: Video, rhs: Video) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let id: String
 
     let title: String
@@ -21,10 +25,12 @@ struct Video {
     let likeCount: Int
     let dislikeCount: Int
 
+    let duration: Int
+
     var videoURL: URL? {
         return Bundle.main.url(forResource: id, withExtension: "mp4")
     }
-    var thumgnailURL: URL? {
+    var thumbnailURL: URL? {
         return Bundle.main.url(forResource: id, withExtension: "png")
     }
 
@@ -38,7 +44,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "10001",
                 title: "Creek",
@@ -47,7 +54,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "21475",
                 title: "Morocco",
@@ -56,7 +64,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "25445",
                 title: "Fire",
@@ -65,7 +74,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "28368",
                 title: "Ducks",
@@ -74,7 +84,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "35866",
                 title: "Composition",
@@ -83,7 +94,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "35881",
                 title: "Carousel",
@@ -92,7 +104,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
             Video(
                 id: "41170",
                 title: "Cascade",
@@ -101,7 +114,8 @@ struct Video {
                 date: Date(),
                 viewCount: 1203,
                 likeCount: 350,
-                dislikeCount: 16),
+                dislikeCount: 16,
+                duration: 88),
         ]
     }
 }

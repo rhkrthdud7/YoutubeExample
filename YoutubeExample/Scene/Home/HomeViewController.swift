@@ -6,14 +6,16 @@
 //  Copyright © 2020 Soso. All rights reserved.
 //
 
+import UIKit
 import RIBs
+import ReactorKit
 import RxSwift
 import RxCocoa
-import ReactorKit
-import SnapKit
-import UIKit
-import Then
+import RxDataSources
 import RxViewController
+import SnapKit
+import ReusableKit
+import Then
 
 protocol HomePresentableListener: class {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -27,6 +29,9 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
 
     var disposeBag = DisposeBag()
 
+    private enum Reusable {
+        static let videoCell = ReusableCell<VideoCell>()
+    }
     private enum Color {
         static let lightBlack = 0x282828.color
         static let darkBlack = 0x212121.color
@@ -36,6 +41,12 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         static let loadingOffset: CGFloat = 64
     }
 
+    let dataSource = RxTableViewSectionedReloadDataSource<VideoListSection>(
+        configureCell: { _, tableView, indexPath, reactor in
+            let cell = tableView.dequeue(Reusable.videoCell, for: indexPath)
+            cell.reactor = reactor
+            return cell
+        })
     let viewNavigationBar = UIView().then {
         $0.backgroundColor = Color.lightBlack
     }
@@ -58,7 +69,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         $0.backgroundColor = Color.darkBlack
     }
     lazy var tableView = UITableView().then {
-        $0.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        $0.register(Reusable.videoCell)
         $0.backgroundColor = Color.darkBlack
     }
     let refreshControl = UIRefreshControl().then {
@@ -131,12 +142,8 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
             .disposed(by: disposeBag)
         reactor.state
             .map { $0.videos }
-            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { row, video, cell in
-                cell.textLabel?.text = video.id
-                cell.textLabel?.textColor = .white
-                cell.backgroundColor = Color.darkBlack
-                cell.selectionStyle = .none
-            }.disposed(by: disposeBag)
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
 }
 

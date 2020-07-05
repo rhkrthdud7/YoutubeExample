@@ -9,6 +9,9 @@
 import RIBs
 import RxSwift
 import ReactorKit
+import RxDataSources
+
+typealias VideoListSection = SectionModel<Void, VideoCellReactor>
 
 protocol HomeRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -55,7 +58,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
     var initialState = State()
 
     struct State {
-        var videos: [Video] = []
+        var videos: [VideoListSection] = []
         var isLoading: Bool = false
     }
     enum Action {
@@ -67,7 +70,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         case tapCell(Int)
     }
     enum Mutation {
-        case setVideos([Video])
+        case setVideos([VideoListSection])
         case setLoading(Bool)
     }
 
@@ -79,7 +82,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
             guard !currentState.isLoading else { return .empty() }
             return Observable.concat([
                 Observable.just(Mutation.setLoading(true)),
-                fetchVideos().delay(.seconds(2), scheduler: MainScheduler.instance),
+                fetchVideos().delay(.seconds(1), scheduler: MainScheduler.instance),
                 Observable.just(Mutation.setLoading(false))
                 ])
         case .tapUpload, .tapSearch, .tapAccount, .tapCell:
@@ -97,11 +100,15 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
         }
         return state
     }
-    
+
     private func fetchVideos() -> Observable<Mutation> {
         return videoService
             .fetchVideos()
-            .map { Mutation.setVideos($0) }
+            .map({ videos in
+                let items = videos.map(VideoCellReactor.init)
+                let section = VideoListSection(model: Void(), items: items)
+                return .setVideos([section])
+            })
     }
 
 }
