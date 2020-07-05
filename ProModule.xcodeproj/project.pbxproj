@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9C39B5B324AF27BA0003D013 /* SwiftyColor in Frameworks */ = {isa = PBXBuildFile; productRef = 9C39B5B224AF27BA0003D013 /* SwiftyColor */; };
 		9C39B5B624AF27E20003D013 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C39B5B524AF27E20003D013 /* ReactorKit */; };
+		9C59C2F224B190BA00402BC5 /* ReusableKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C59C2F124B190BA00402BC5 /* ReusableKit */; };
+		9C59C2F424B190BA00402BC5 /* RxReusableKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C59C2F324B190BA00402BC5 /* RxReusableKit */; };
+		9C59C2F724B190E700402BC5 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 9C59C2F624B190E700402BC5 /* Differentiator */; };
+		9C59C2F924B190E700402BC5 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 9C59C2F824B190E700402BC5 /* RxDataSources */; };
 		9CB525A524B05D15005CEFEA /* RxViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB525A424B05D15005CEFEA /* RxViewController */; };
 		9CEE727224AADBAD00F649EC /* ProModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CEE727024AADBAD00F649EC /* ProModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CEE727A24AADBEC00F649EC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9CEE727924AADBEC00F649EC /* SnapKit */; };
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C59C2F224B190BA00402BC5 /* ReusableKit in Frameworks */,
+				9C59C2F724B190E700402BC5 /* Differentiator in Frameworks */,
 				9C39B5B324AF27BA0003D013 /* SwiftyColor in Frameworks */,
 				9CEE728C24AADD2300F649EC /* RxCocoa in Frameworks */,
 				9CEE728A24AADD2300F649EC /* RxRelay in Frameworks */,
@@ -40,6 +46,8 @@
 				9CEE728224AADC8D00F649EC /* Then in Frameworks */,
 				9CEE728824AADD2300F649EC /* RxSwift in Frameworks */,
 				9CEE728524AADD1600F649EC /* RIBs in Frameworks */,
+				9C59C2F924B190E700402BC5 /* RxDataSources in Frameworks */,
+				9C59C2F424B190BA00402BC5 /* RxReusableKit in Frameworks */,
 				9CEE728E24AADD2300F649EC /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +119,10 @@
 				9C39B5B224AF27BA0003D013 /* SwiftyColor */,
 				9C39B5B524AF27E20003D013 /* ReactorKit */,
 				9CB525A424B05D15005CEFEA /* RxViewController */,
+				9C59C2F124B190BA00402BC5 /* ReusableKit */,
+				9C59C2F324B190BA00402BC5 /* RxReusableKit */,
+				9C59C2F624B190E700402BC5 /* Differentiator */,
+				9C59C2F824B190E700402BC5 /* RxDataSources */,
 			);
 			productName = ProModule;
 			productReference = 9CEE726D24AADBAD00F649EC /* ProModule.framework */;
@@ -147,6 +159,8 @@
 				9C39B5B124AF27BA0003D013 /* XCRemoteSwiftPackageReference "SwiftyColor" */,
 				9C39B5B424AF27E20003D013 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				9CB525A324B05D15005CEFEA /* XCRemoteSwiftPackageReference "RxViewController" */,
+				9C59C2F024B190BA00402BC5 /* XCRemoteSwiftPackageReference "ReusableKit" */,
+				9C59C2F524B190E700402BC5 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 9CEE726E24AADBAD00F649EC /* Products */;
 			projectDirPath = "";
@@ -386,6 +400,22 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		9C59C2F024B190BA00402BC5 /* XCRemoteSwiftPackageReference "ReusableKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/ReusableKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		9C59C2F524B190E700402BC5 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		9CB525A324B05D15005CEFEA /* XCRemoteSwiftPackageReference "RxViewController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/RxViewController";
@@ -438,6 +468,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C39B5B424AF27E20003D013 /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
+		};
+		9C59C2F124B190BA00402BC5 /* ReusableKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C59C2F024B190BA00402BC5 /* XCRemoteSwiftPackageReference "ReusableKit" */;
+			productName = ReusableKit;
+		};
+		9C59C2F324B190BA00402BC5 /* RxReusableKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C59C2F024B190BA00402BC5 /* XCRemoteSwiftPackageReference "ReusableKit" */;
+			productName = RxReusableKit;
+		};
+		9C59C2F624B190E700402BC5 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C59C2F524B190E700402BC5 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		9C59C2F824B190E700402BC5 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C59C2F524B190E700402BC5 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		9CB525A424B05D15005CEFEA /* RxViewController */ = {
 			isa = XCSwiftPackageProductDependency;

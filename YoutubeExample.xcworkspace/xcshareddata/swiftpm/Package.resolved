@@ -11,12 +11,30 @@
         }
       },
       {
+        "package": "ReusableKit",
+        "repositoryURL": "https://github.com/devxoul/ReusableKit",
+        "state": {
+          "branch": null,
+          "revision": "9a5756ba41f7a864ff0738c21876d52b9e67eec7",
+          "version": "3.0.0"
+        }
+      },
+      {
         "package": "RIBs",
         "repositoryURL": "https://github.com/uber/RIBs",
         "state": {
           "branch": "master",
           "revision": "ffc489f00db785c8c0051678393f7aba0d52f1a4",
           "version": null
+        }
+      },
+      {
+        "package": "RxDataSources",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources",
+        "state": {
+          "branch": null,
+          "revision": "a18cee01c9ee55f04d0c7eb15c77a96c3648c88e",
+          "version": "4.0.1"
         }
       },
       {
