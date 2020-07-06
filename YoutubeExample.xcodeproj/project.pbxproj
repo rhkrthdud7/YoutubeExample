@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C0B0A3B24B3261400860FB5 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B0A3724B3261400860FB5 /* PlayerRouter.swift */; };
+		9C0B0A3C24B3261400860FB5 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B0A3824B3261400860FB5 /* PlayerViewController.swift */; };
+		9C0B0A3D24B3261400860FB5 /* PlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B0A3924B3261400860FB5 /* PlayerBuilder.swift */; };
+		9C0B0A3E24B3261400860FB5 /* PlayerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B0A3A24B3261400860FB5 /* PlayerInteractor.swift */; };
 		9C0FC7BF24B185C00063F002 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FC7BE24B185C00063F002 /* VideoCell.swift */; };
 		9C4437B024AAD8A2002A0BFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4437AF24AAD8A2002A0BFA /* AppDelegate.swift */; };
 		9C4437B224AAD8A2002A0BFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4437B124AAD8A2002A0BFA /* SceneDelegate.swift */; };
@@ -75,6 +79,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C0B0A3724B3261400860FB5 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		9C0B0A3824B3261400860FB5 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		9C0B0A3924B3261400860FB5 /* PlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBuilder.swift; sourceTree = "<group>"; };
+		9C0B0A3A24B3261400860FB5 /* PlayerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInteractor.swift; sourceTree = "<group>"; };
 		9C0FC7BE24B185C00063F002 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		9C4437AC24AAD8A2002A0BFA /* YoutubeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4437AF24AAD8A2002A0BFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +149,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C0B0A3624B3260200860FB5 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				9C0B0A3724B3261400860FB5 /* PlayerRouter.swift */,
+				9C0B0A3A24B3261400860FB5 /* PlayerInteractor.swift */,
+				9C0B0A3924B3261400860FB5 /* PlayerBuilder.swift */,
+				9C0B0A3824B3261400860FB5 /* PlayerViewController.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		9C4437A324AAD8A2002A0BFA = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +329,7 @@
 				9CC3E52824ACAC6F003EE1AF /* Splash */,
 				9CC3E50F24AB6B52003EE1AF /* MainTab */,
 				9CC3E51A24AC281D003EE1AF /* Home */,
+				9C0B0A3624B3260200860FB5 /* Player */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -415,8 +435,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC3E51924AB6B62003EE1AF /* RootComponent+MainTab.swift in Sources */,
+				9C0B0A3C24B3261400860FB5 /* PlayerViewController.swift in Sources */,
 				9C0FC7BF24B185C00063F002 /* VideoCell.swift in Sources */,
 				9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */,
+				9C0B0A3D24B3261400860FB5 /* PlayerBuilder.swift in Sources */,
+				9C0B0A3E24B3261400860FB5 /* PlayerInteractor.swift in Sources */,
 				9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */,
 				9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */,
 				9CE7008724B07ABB001E4488 /* Video.swift in Sources */,
@@ -445,6 +468,7 @@
 				9CC3E52224AC2850003EE1AF /* HomeInteractor.swift in Sources */,
 				9CB05E6A24B196C600500EDC /* BaseTableViewCell.swift in Sources */,
 				9CC3E52E24ACAC82003EE1AF /* SplashViewController.swift in Sources */,
+				9C0B0A3B24B3261400860FB5 /* PlayerRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
