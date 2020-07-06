@@ -1,0 +1,15 @@
+name: build
+
+on: [pull_request]
+
+jobs:
+  iOS:
+    name: build
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        destination: ["OS=13.5,name=iPhone 11 Pro"]
+    steps:
+      - uses: actions/checkout@v1
+      - name: iOS - ${{ matrix.destination }}
+        run: xcodebuild -workspace "YoutubeExample.xcworkspace" -scheme "YoutubeExample" -destination "${{ matrix.destination }}"
