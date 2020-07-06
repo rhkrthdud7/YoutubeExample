@@ -9,13 +9,15 @@
 import RIBs
 import UIKit
 
-protocol MainTabInteractable: Interactable, HomeListener {
+protocol MainTabInteractable: Interactable, HomeListener, PlayerListener {
     var router: MainTabRouting? { get set }
     var listener: MainTabListener? { get set }
 }
 
 protocol MainTabViewControllable: ViewControllable {
     func setViewControllers(viewControllers: [ViewControllable], animated: Bool)
+    func showViewController(viewController: ViewControllable)
+    func dismissViewController(completion: (() -> Void)?)
 }
 
 final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewControllable>, MainTabRouting {
@@ -23,15 +25,19 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
     init(
         interactor: MainTabInteractable,
         viewController: MainTabViewControllable,
-        homeBuilder: HomeBuildable
+        homeBuilder: HomeBuildable,
+        playerBuilder: PlayerBuildable
     ) {
         self.homeBuilder = homeBuilder
+        self.playerBuilder = playerBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
 
     private let homeBuilder: HomeBuildable
     private var home: HomeRouting?
+    private let playerBuilder: PlayerBuildable
+    private var player: PlayerRouting?
 
     override func didLoad() {
         super.didLoad()
@@ -47,6 +53,25 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
         let navHome = UINavigationController(root: home.viewControllable)
         navHome.setNavigationBarHidden(true, animated: true)
         viewController.setViewControllers(viewControllers: [navHome], animated: false)
+    }
+
+    // MARK: - MainTabRouting
+    func showPlayer(with videoID: String) {
+        guard player == nil else { return }
+
+        let player = playerBuilder.build(withListener: interactor)
+        attachChild(player)
+        self.player = player
+
+        viewController.showViewController(viewController: player.viewControllable)
+    }
+
+    func dismissPlayer() {
+        guard let player = self.player else { return }
+        viewController.dismissViewController { [weak self] in
+            self?.detachChild(player)
+            self?.player = nil
+        }
     }
 
 }

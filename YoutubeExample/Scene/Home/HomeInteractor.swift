@@ -19,7 +19,9 @@ protocol HomePresentable: Presentable {
     var listener: HomePresentableListener? { get set }
 }
 
-protocol HomeListener: class { }
+protocol HomeListener: class {
+    func didSelectVideo(with videoID: String)
+}
 
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener, Reactor {
 
@@ -76,7 +78,11 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
                 fetchVideos().delay(.seconds(3), scheduler: MainScheduler.instance),
                 Observable.just(Mutation.setLoading(false))
                 ])
-        case .tapUpload, .tapSearch, .tapAccount, .tapCell:
+        case .tapCell(let row):
+            let videoID = currentState.videos[0].items[row].currentState.id
+            listener?.didSelectVideo(with: videoID)
+            return .empty()
+        case .tapUpload, .tapSearch, .tapAccount:
             return .empty()
         }
     }

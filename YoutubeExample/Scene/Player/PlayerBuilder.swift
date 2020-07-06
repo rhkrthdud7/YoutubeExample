@@ -27,6 +27,7 @@ final class PlayerBuilder: Builder<PlayerDependency>, PlayerBuildable {
     func build(withListener listener: PlayerListener) -> PlayerRouting {
 //        let component = PlayerComponent(dependency: dependency)
         let viewController = PlayerViewController()
+        viewController.modalPresentationStyle = .overFullScreen
         let interactor = PlayerInteractor(presenter: viewController)
         interactor.listener = listener
         return PlayerRouter(interactor: interactor, viewController: viewController)

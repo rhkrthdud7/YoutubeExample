@@ -51,10 +51,12 @@ final class MainTabBuilder: Builder<MainTabDependency>, MainTabBuildable {
         let interactor = MainTabInteractor(presenter: viewController)
         interactor.listener = listener
         let homeBuilder = HomeBuilder(dependency: component)
+        let playerBuilder = PlayerBuilder(dependency: component)
         return MainTabRouter(
             interactor: interactor,
             viewController: viewController,
-            homeBuilder: homeBuilder
+            homeBuilder: homeBuilder,
+            playerBuilder: playerBuilder
         )
     }
 }

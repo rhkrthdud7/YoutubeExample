@@ -9,13 +9,16 @@
 import RIBs
 import RxSwift
 
-protocol MainTabRouting: ViewableRouting {}
+protocol MainTabRouting: ViewableRouting {
+    func showPlayer(with videoID: String)
+    func dismissPlayer()
+}
 
 protocol MainTabPresentable: Presentable {
     var listener: MainTabPresentableListener? { get set }
 }
 
-protocol MainTabListener: class {}
+protocol MainTabListener: class { }
 
 final class MainTabInteractor: PresentableInteractor<MainTabPresentable>, MainTabInteractable, MainTabPresentableListener {
 
@@ -33,5 +36,10 @@ final class MainTabInteractor: PresentableInteractor<MainTabPresentable>, MainTa
 
     override func willResignActive() {
         super.willResignActive()
+    }
+
+    // MARK: - HomeListener
+    func didSelectVideo(with videoID: String) {
+        router?.showPlayer(with: videoID)
     }
 }

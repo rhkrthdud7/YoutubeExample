@@ -15,4 +15,14 @@ protocol PlayerPresentableListener: class {}
 final class PlayerViewController: UIViewController, PlayerPresentable, PlayerViewControllable {
 
     weak var listener: PlayerPresentableListener?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupViews()
+    }
+
+    func setupViews() {
+        view.backgroundColor = .red
+    }
 }

@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 import SwiftyColor
 
-protocol MainTabPresentableListener: class {}
+protocol MainTabPresentableListener: class { }
 
 final class MainTabViewController: UITabBarController, MainTabPresentable, MainTabViewControllable {
 
@@ -34,4 +34,11 @@ final class MainTabViewController: UITabBarController, MainTabPresentable, MainT
         setViewControllers(viewControllers, animated: false)
     }
 
+    func showViewController(viewController: ViewControllable) {
+        present(viewController.uiviewController, animated: true, completion: nil)
+    }
+
+    func dismissViewController(completion: (() -> Void)?) {
+        dismiss(animated: true, completion: completion)
+    }
 }
