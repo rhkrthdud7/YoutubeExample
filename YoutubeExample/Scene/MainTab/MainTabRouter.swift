@@ -15,13 +15,11 @@ protocol MainTabInteractable: Interactable, HomeListener {
 }
 
 protocol MainTabViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
     func setViewControllers(viewControllers: [ViewControllable], animated: Bool)
 }
 
 final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewControllable>, MainTabRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     init(
         interactor: MainTabInteractable,
         viewController: MainTabViewControllable,
@@ -45,7 +43,7 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
         let home = homeBuilder.build(withListener: interactor)
         attachChild(home)
         self.home = home
-        
+
         let navHome = UINavigationController(root: home.viewControllable)
         navHome.setNavigationBarHidden(true, animated: true)
         viewController.setViewControllers(viewControllers: [navHome], animated: false)

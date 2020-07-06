@@ -12,7 +12,7 @@ struct Video: Equatable {
     static func == (lhs: Video, rhs: Video) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
     let id: String
 
     let title: String
@@ -115,7 +115,7 @@ struct Video: Equatable {
                 viewCount: 1203,
                 likeCount: 350,
                 dislikeCount: 16,
-                duration: 88),
+                duration: 88)
         ]
     }
 }

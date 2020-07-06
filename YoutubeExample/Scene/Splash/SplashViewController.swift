@@ -13,9 +13,6 @@ import SnapKit
 import Then
 
 protocol SplashPresentableListener: class {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
     func didFinishSplashAnimation()
 }
 
@@ -34,7 +31,7 @@ final class SplashViewController: UIViewController, SplashPresentable, SplashVie
 
         setupViews()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -49,7 +46,7 @@ final class SplashViewController: UIViewController, SplashPresentable, SplashVie
 
     func setupViews() {
         view.backgroundColor = .white
-        
+
         view.addSubview(imageViewLogo)
         imageViewLogo.snp.makeConstraints {
             $0.center.equalToSuperview()

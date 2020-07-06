@@ -8,14 +8,6 @@
 
 import RIBs
 
-/// The dependencies needed from the parent scope of MainTab to provide for the Home scope.
-// TODO: Update MainTabDependency protocol to inherit this protocol.
-protocol MainTabDependencyHome: Dependency {
-    // TODO: Declare dependencies needed from the parent scope of MainTab to provide dependencies
-    // for the Home scope.
-}
+protocol MainTabDependencyHome: Dependency {}
 
-extension MainTabComponent: HomeDependency {
-
-    // TODO: Implement properties to provide for Home scope.
-}
+extension MainTabComponent: HomeDependency {}

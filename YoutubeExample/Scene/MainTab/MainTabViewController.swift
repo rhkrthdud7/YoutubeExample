@@ -11,23 +11,19 @@ import RxSwift
 import UIKit
 import SwiftyColor
 
-protocol MainTabPresentableListener: class {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
-}
+protocol MainTabPresentableListener: class {}
 
 final class MainTabViewController: UITabBarController, MainTabPresentable, MainTabViewControllable {
 
     weak var listener: MainTabPresentableListener?
-    
+
     private enum Color {
         static let tabBarTint = 0x282828.color
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tabBar.tintColor = .white
         tabBar.barTintColor = Color.tabBarTint
     }
