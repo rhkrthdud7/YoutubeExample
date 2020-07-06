@@ -16,7 +16,7 @@ class VideoCellReactor: Reactor {
         let seconds = video.duration % 60
         let minutes = video.duration / 60
         let durationText = String(format: "%d:%d", minutes, seconds)
-        
+
         self.initialState = State(
             id: video.id,
             titleText: titleText,
@@ -25,7 +25,7 @@ class VideoCellReactor: Reactor {
             thumbnailURL: video.thumbnailURL
         )
     }
-    
+
     // MARK: - Reactor
     let initialState: State
 

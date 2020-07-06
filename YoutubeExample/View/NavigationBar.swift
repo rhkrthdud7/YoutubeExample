@@ -11,10 +11,10 @@ import UIKit
 class NavigationBar: UIView {
     init(subviews: [UIView] = []) {
         super.init(frame: .zero)
-        
+
         setupViews(subviews: subviews)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -23,12 +23,12 @@ class NavigationBar: UIView {
         $0.image = #imageLiteral(resourceName: "image_logo")
         $0.contentMode = .scaleAspectFit
     }
-    
+
     let stackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
     }
-    
+
     func setupViews(subviews: [UIView]) {
         addSubview(imageViewLogo)
         imageViewLogo.snp.makeConstraints {

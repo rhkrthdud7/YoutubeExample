@@ -13,18 +13,13 @@ import RxDataSources
 
 typealias VideoListSection = SectionModel<Int, VideoCellReactor>
 
-protocol HomeRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol HomeRouting: ViewableRouting { }
 
 protocol HomePresentable: Presentable {
     var listener: HomePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol HomeListener: class {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-}
+protocol HomeListener: class { }
 
 final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener, Reactor {
 
@@ -33,8 +28,6 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
 
     let videoService: VideoServiceType
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     init(
         presenter: HomePresentable,
         videoService: VideoServiceType
@@ -46,12 +39,10 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
 
     // MARK: - Reactor

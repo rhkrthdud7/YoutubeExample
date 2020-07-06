@@ -220,9 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				9CC3E52924ACAC82003EE1AF /* SplashRouter.swift */,
-				9CC3E52A24ACAC82003EE1AF /* SplashViewController.swift */,
-				9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */,
 				9CC3E52C24ACAC82003EE1AF /* SplashInteractor.swift */,
+				9CC3E52B24ACAC82003EE1AF /* SplashBuilder.swift */,
+				9CC3E52A24ACAC82003EE1AF /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";

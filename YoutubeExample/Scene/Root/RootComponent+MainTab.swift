@@ -8,14 +8,6 @@
 
 import RIBs
 
-/// The dependencies needed from the parent scope of Root to provide for the MainTab scope.
-// TODO: Update RootDependency protocol to inherit this protocol.
-protocol RootDependencyMainTab: Dependency {
-    // TODO: Declare dependencies needed from the parent scope of Root to provide dependencies
-    // for the MainTab scope.
-}
+protocol RootDependencyMainTab: Dependency {}
 
-extension RootComponent: MainTabDependency {
-
-    // TODO: Implement properties to provide for MainTab scope.
-}
+extension RootComponent: MainTabDependency {}

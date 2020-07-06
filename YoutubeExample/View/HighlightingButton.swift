@@ -26,16 +26,16 @@ class HighlightingButton: UIButton {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
+
         showLayerHighlight()
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
+
         hideLayerHighlight()
     }
-    
+
     func showLayerHighlight() {
         let animation = CABasicAnimation()
         animation.fromValue = 0
@@ -44,7 +44,7 @@ class HighlightingButton: UIButton {
         layerHighlight.opacity = 1
         layerHighlight.add(animation, forKey: "opacity")
     }
-    
+
     func hideLayerHighlight() {
         let animation = CABasicAnimation()
         animation.fromValue = 1

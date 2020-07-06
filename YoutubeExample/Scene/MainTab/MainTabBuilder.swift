@@ -8,10 +8,7 @@
 
 import RIBs
 
-protocol MainTabDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
-}
+protocol MainTabDependency: Dependency {}
 
 final class MainTabComponent: Component<MainTabDependency> {
 
