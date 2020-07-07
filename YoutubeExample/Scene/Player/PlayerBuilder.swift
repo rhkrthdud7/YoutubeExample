@@ -29,6 +29,7 @@ final class PlayerBuilder: Builder<PlayerDependency>, PlayerBuildable {
         let viewController = PlayerViewController()
         viewController.modalPresentationStyle = .overFullScreen
         let interactor = PlayerInteractor(presenter: viewController)
+        viewController.reactor = interactor
         interactor.listener = listener
         return PlayerRouter(interactor: interactor, viewController: viewController)
     }

@@ -7,32 +7,17 @@
 //
 
 import RIBs
+import ReactorKit
 import RxSwift
+import RxGesture
 import UIKit
 
 protocol PlayerPresentableListener: class { }
 
-final class PlayerViewController: BaseViewController, PlayerPresentable, PlayerViewControllable {
+final class PlayerViewController: BaseViewController, PlayerPresentable, PlayerViewControllable, ReactorKit.View {
 
     weak var listener: PlayerPresentableListener?
-    private var mode: Mode = .full {
-        didSet {
-            guard let view = view?.superview else { return }
-            var frame: CGRect
-            if mode == .full {
-                frame = Metric.fullFrame
-            } else {
-                frame = Metric.miniFrame
-            }
-            UIView.animate(withDuration: 0.2) {
-                view.frame = frame
-            }
-        }
-    }
 
-    private enum Mode {
-        case full, mini
-    }
     private enum Metric {
         static let bottom = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? .zero
         static let bounds = UIScreen.main.bounds
@@ -54,13 +39,45 @@ final class PlayerViewController: BaseViewController, PlayerPresentable, PlayerV
         setupViews()
     }
 
+    func bind(reactor: PlayerInteractor) {
+        view.rx.panGesture()
+            .when(.ended)
+            .compactMap { $0.view?.superview?.frame.minY }
+            .map({ y in
+                if reactor.currentState.mode == .full && y > Metric.maxY / 4 {
+                    return .mini
+                } else if reactor.currentState.mode == .mini && y < Metric.maxY * 3 / 4 {
+                    return .full
+                } else {
+                    return reactor.currentState.mode
+                }
+            })
+            .map(Reactor.Action.setMode)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+
+        reactor.state
+            .map { $0.mode }
+            .map { $0 == .full ? Metric.fullFrame : Metric.miniFrame }
+            .subscribe(onNext: { [weak self] frame in
+                guard self?.view.superview?.frame != frame else { return }
+                UIView.animate(withDuration: 0.2) {
+                    self?.view.superview?.frame = frame
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+
+}
+
+extension PlayerViewController {
     func setupViews() {
         view.backgroundColor = .red
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture))
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction))
         view.addGestureRecognizer(gesture)
     }
 
-    @objc func panGesture(_ gesture: UIPanGestureRecognizer) {
+    @objc func panGestureAction(_ gesture: UIPanGestureRecognizer) {
         let minX = Metric.minX
         let maxX = Metric.maxX
         let minY = Metric.minY
@@ -85,15 +102,6 @@ final class PlayerViewController: BaseViewController, PlayerPresentable, PlayerV
             frame.size.height = min(max(height, minHeight), maxHeight)
             view.frame = frame
             gesture.setTranslation(.zero, in: view)
-        } else if gesture.state == .ended {
-            if mode == .full && view.frame.minY > maxY / 4 {
-                mode = .mini
-            } else if mode == .mini && view.frame.minY < maxY * 3 / 4 {
-                mode = .full
-            } else {
-                let current = mode
-                mode = current
-            }
         }
     }
 
