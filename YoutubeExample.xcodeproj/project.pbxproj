@@ -63,6 +63,7 @@
 		9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729624AAE50700F649EC /* RootBuilder.swift */; };
 		9CEE729B24AAE50700F649EC /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729724AAE50700F649EC /* RootInteractor.swift */; };
 		9CEF7AFD24B5FC59008A95A2 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */; };
+		9CFDA61724B40C2C00097BF0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDA61624B40C2C00097BF0 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +137,7 @@
 		9CEE729524AAE50700F649EC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		9CEE729624AAE50700F649EC /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		9CEE729724AAE50700F649EC /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		9CFDA61624B40C2C00097BF0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 		9C7434AC24AED5C500479D52 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9CFDA61624B40C2C00097BF0 /* BaseViewController.swift */,
 				9CB05E6924B196C600500EDC /* BaseTableViewCell.swift */,
 				9C7434AD24AED5C500479D52 /* NavigationBar.swift */,
 				9C7434AF24AEDC2800479D52 /* HighlightingButton.swift */,
@@ -442,6 +445,7 @@
 				9C0FC7BF24B185C00063F002 /* VideoCell.swift in Sources */,
 				9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */,
 				9C0B0A3D24B3261400860FB5 /* PlayerBuilder.swift in Sources */,
+				9CFDA61724B40C2C00097BF0 /* BaseViewController.swift in Sources */,
 				9C0B0A3E24B3261400860FB5 /* PlayerInteractor.swift in Sources */,
 				9CC3E52D24ACAC82003EE1AF /* SplashRouter.swift in Sources */,
 				9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */,
