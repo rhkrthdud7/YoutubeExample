@@ -22,6 +22,7 @@
 		9CEE728A24AADD2300F649EC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 9CEE728924AADD2300F649EC /* RxRelay */; };
 		9CEE728C24AADD2300F649EC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 9CEE728B24AADD2300F649EC /* RxCocoa */; };
 		9CEE728E24AADD2300F649EC /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 9CEE728D24AADD2300F649EC /* RxBlocking */; };
+		9CFDA61A24B4166C00097BF0 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 9CFDA61924B4166C00097BF0 /* RxGesture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 				9CEE728A24AADD2300F649EC /* RxRelay in Frameworks */,
 				9CB525A524B05D15005CEFEA /* RxViewController in Frameworks */,
 				9CEE727A24AADBEC00F649EC /* SnapKit in Frameworks */,
+				9CFDA61A24B4166C00097BF0 /* RxGesture in Frameworks */,
 				9C39B5B624AF27E20003D013 /* ReactorKit in Frameworks */,
 				9CEE728224AADC8D00F649EC /* Then in Frameworks */,
 				9CEE728824AADD2300F649EC /* RxSwift in Frameworks */,
@@ -123,6 +125,7 @@
 				9C59C2F324B190BA00402BC5 /* RxReusableKit */,
 				9C59C2F624B190E700402BC5 /* Differentiator */,
 				9C59C2F824B190E700402BC5 /* RxDataSources */,
+				9CFDA61924B4166C00097BF0 /* RxGesture */,
 			);
 			productName = ProModule;
 			productReference = 9CEE726D24AADBAD00F649EC /* ProModule.framework */;
@@ -161,6 +164,7 @@
 				9CB525A324B05D15005CEFEA /* XCRemoteSwiftPackageReference "RxViewController" */,
 				9C59C2F024B190BA00402BC5 /* XCRemoteSwiftPackageReference "ReusableKit" */,
 				9C59C2F524B190E700402BC5 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				9CFDA61824B4166C00097BF0 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 9CEE726E24AADBAD00F649EC /* Products */;
 			projectDirPath = "";
@@ -456,6 +460,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		9CFDA61824B4166C00097BF0 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -528,6 +540,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9CEE728624AADD2300F649EC /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
+		};
+		9CFDA61924B4166C00097BF0 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CFDA61824B4166C00097BF0 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
