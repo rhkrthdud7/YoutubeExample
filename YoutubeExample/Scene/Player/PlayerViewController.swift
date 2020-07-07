@@ -12,7 +12,7 @@ import UIKit
 
 protocol PlayerPresentableListener: class { }
 
-final class PlayerViewController: UIViewController, PlayerPresentable, PlayerViewControllable {
+final class PlayerViewController: BaseViewController, PlayerPresentable, PlayerViewControllable {
 
     weak var listener: PlayerPresentableListener?
     private var mode: Mode = .full {
@@ -50,9 +50,7 @@ final class PlayerViewController: UIViewController, PlayerPresentable, PlayerVie
         static let miniFrame = CGRect(x: maxX, y: maxY, width: minWidth, height: minHeight)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func setupConstraints() {
         setupViews()
     }
 
