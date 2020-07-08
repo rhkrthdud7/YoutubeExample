@@ -17,7 +17,7 @@ protocol MainTabInteractable: Interactable, HomeListener, PlayerListener {
 protocol MainTabViewControllable: ViewControllable {
     func setViewControllers(viewControllers: [ViewControllable], animated: Bool)
     func showViewController(viewController: ViewControllable)
-    func dismissViewController(completion: (() -> Void)?)
+    func dismissViewController(viewController: ViewControllable, completion: (() -> Void)?)
 }
 
 final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewControllable>, MainTabRouting {
@@ -68,7 +68,7 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
 
     func dismissPlayer() {
         guard let player = self.player else { return }
-        viewController.dismissViewController { [weak self] in
+        viewController.dismissViewController(viewController: player.viewControllable) { [weak self] in
             self?.detachChild(player)
             self?.player = nil
         }

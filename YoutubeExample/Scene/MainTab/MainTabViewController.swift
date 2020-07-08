@@ -38,7 +38,7 @@ final class MainTabViewController: UITabBarController, MainTabPresentable, MainT
         present(viewController.uiviewController, animated: true, completion: nil)
     }
 
-    func dismissViewController(completion: (() -> Void)?) {
-        dismiss(animated: true, completion: completion)
+    func dismissViewController(viewController: ViewControllable, completion: (() -> Void)?) {
+        viewController.uiviewController.dismiss(animated: true, completion: completion)
     }
 }
