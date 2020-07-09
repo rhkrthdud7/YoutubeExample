@@ -73,7 +73,7 @@ final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteract
             guard !currentState.isLoading else { return .empty() }
             return Observable.concat([
                 Observable.just(Mutation.setLoading(true)),
-                fetchVideos().delay(.seconds(1), scheduler: MainScheduler.instance),
+                fetchVideos().delay(.seconds(3), scheduler: MainScheduler.instance),
                 Observable.just(Mutation.setLoading(false))
                 ])
         case .tapUpload, .tapSearch, .tapAccount, .tapCell:
