@@ -17,7 +17,7 @@ import SnapKit
 import ReusableKit
 import Then
 
-protocol HomePresentableListener: class {}
+protocol HomePresentableListener: class { }
 
 final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, View {
 
@@ -34,7 +34,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     private enum Metric {
         static let navigationBarHeight: CGFloat = 44
-        static let loadingOffset: CGFloat = 64
+        static let loadingOffset: CGFloat = 56
     }
 
     let dataSource = RxTableViewSectionedReloadDataSource<VideoListSection>(
@@ -68,14 +68,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         $0.register(Reusable.videoCell)
         $0.backgroundColor = Color.darkBlack
     }
-    let refreshControl = UIRefreshControl().then {
-        $0.backgroundColor = .clear
-        $0.tintColor = .clear
-    }
-    let labelLoading = UILabel().then {
-        $0.text = "Loading"
-        $0.textColor = .white
-        $0.textAlignment = .center
+    let activityIndicator = CustomActivityIndicator().then {
         $0.backgroundColor = .clear
     }
     var constraintNavTop: NSLayoutConstraint?
@@ -126,7 +119,16 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         reactor.state
             .map { $0.isLoading }
             .distinctUntilChanged()
-            .bind(to: refreshControl.rx.isRefreshing)
+            .do(onNext: { isLoading in
+                if isLoading {
+                    tableView.contentInset.top = Metric.loadingOffset
+                } else {
+                    UIView.animate(withDuration: 0.2) {
+                        tableView.contentInset.top = .zero
+                    }
+                }
+            })
+            .bind(to: activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         reactor.state
             .map { $0.isLoading }
@@ -177,11 +179,14 @@ extension HomeViewController {
             $0.edges.equalToSuperview()
         }
 
-        tableView.refreshControl = refreshControl
-        refreshControl.addSubview(labelLoading)
-        labelLoading.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        tableView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.top.equalTo(viewNavigationBar.snp.bottom)
+            $0.bottom.equalTo(tableView.snp.top)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(30)
         }
+        tableView.bringSubviewToFront(activityIndicator)
     }
 
     func setupNavigation() {
@@ -194,6 +199,13 @@ extension HomeViewController {
 
         // 현재 오프셋
         let contentOffset = tableView.rx.contentOffset
+
+        contentOffset
+            .map { -$0.y }
+            .map { max(min($0 / (Metric.loadingOffset * 2), 1), 0) }
+            .distinctUntilChanged()
+            .bind(to: activityIndicator.rx.state)
+            .disposed(by: disposeBag)
 
         // 현재 스크롤 차이
         let scrollOffsetDiff = Observable

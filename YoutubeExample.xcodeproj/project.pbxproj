@@ -57,6 +57,7 @@
 		9CEE729924AAE50700F649EC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729524AAE50700F649EC /* RootViewController.swift */; };
 		9CEE729A24AAE50700F649EC /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729624AAE50700F649EC /* RootBuilder.swift */; };
 		9CEE729B24AAE50700F649EC /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE729724AAE50700F649EC /* RootInteractor.swift */; };
+		9CEF7AFD24B5FC59008A95A2 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +126,7 @@
 		9CEE729524AAE50700F649EC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		9CEE729624AAE50700F649EC /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		9CEE729724AAE50700F649EC /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				9CB05E6924B196C600500EDC /* BaseTableViewCell.swift */,
 				9C7434AD24AED5C500479D52 /* NavigationBar.swift */,
 				9C7434AF24AEDC2800479D52 /* HighlightingButton.swift */,
+				9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				9CE7008524B07AB6001E4488 /* VideoService.swift in Sources */,
 				9CC3E51624AB6B52003EE1AF /* MainTabViewController.swift in Sources */,
 				9CB05E6824B194E200500EDC /* VideoCellReactor.swift in Sources */,
+				9CEF7AFD24B5FC59008A95A2 /* CustomActivityIndicator.swift in Sources */,
 				9CEE729124AAE48300F649EC /* AppComponent.swift in Sources */,
 				9CC3E51F24AC2850003EE1AF /* HomeRouter.swift in Sources */,
 				9C7434B024AEDC2800479D52 /* HighlightingButton.swift in Sources */,
