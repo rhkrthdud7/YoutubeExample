@@ -37,7 +37,7 @@ final class SplashViewController: UIViewController, SplashPresentable, SplashVie
 
         Observable.just(())
             .take(1)
-            .delay(.seconds(2), scheduler: MainScheduler.instance)
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.listener?.didFinishSplashAnimation()
             })
