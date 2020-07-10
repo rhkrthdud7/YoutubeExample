@@ -19,11 +19,9 @@ import Then
 
 protocol HomePresentableListener: class { }
 
-final class HomeViewController: UIViewController, HomePresentable, HomeViewControllable, View {
+final class HomeViewController: BaseViewController, HomePresentable, HomeViewControllable, View {
 
     weak var listener: HomePresentableListener?
-
-    var disposeBag = DisposeBag()
 
     private enum Reusable {
         static let videoCell = ReusableCell<VideoCell>()
@@ -73,9 +71,7 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     }
     var constraintNavTop: NSLayoutConstraint?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func setupConstraints() {
         setupViews()
         setupNavigation()
     }
