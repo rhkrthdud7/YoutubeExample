@@ -14,6 +14,7 @@
 		9C4437BC24AAD8A4002A0BFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4437BA24AAD8A4002A0BFA /* LaunchScreen.storyboard */; };
 		9C7434AE24AED5C500479D52 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7434AD24AED5C500479D52 /* NavigationBar.swift */; };
 		9C7434B024AEDC2800479D52 /* HighlightingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7434AF24AEDC2800479D52 /* HighlightingButton.swift */; };
+		9C7549AE24B8183B00D20E16 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7549AD24B8183B00D20E16 /* TabBarButton.swift */; };
 		9CB05E6824B194E200500EDC /* VideoCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB05E6724B194E200500EDC /* VideoCellReactor.swift */; };
 		9CB05E6A24B196C600500EDC /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB05E6924B196C600500EDC /* BaseTableViewCell.swift */; };
 		9CC3E51424AB6B52003EE1AF /* MainTabBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC3E51024AB6B52003EE1AF /* MainTabBuilder.swift */; };
@@ -85,6 +86,7 @@
 		9C4437BD24AAD8A4002A0BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C7434AD24AED5C500479D52 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		9C7434AF24AEDC2800479D52 /* HighlightingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightingButton.swift; sourceTree = "<group>"; };
+		9C7549AD24B8183B00D20E16 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		9CB05E6724B194E200500EDC /* VideoCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellReactor.swift; sourceTree = "<group>"; };
 		9CB05E6924B196C600500EDC /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		9CC3E51024AB6B52003EE1AF /* MainTabBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBuilder.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				9CB05E6924B196C600500EDC /* BaseTableViewCell.swift */,
 				9C7434AD24AED5C500479D52 /* NavigationBar.swift */,
 				9C7434AF24AEDC2800479D52 /* HighlightingButton.swift */,
+				9C7549AD24B8183B00D20E16 /* TabBarButton.swift */,
 				9CEF7AFC24B5FC59008A95A2 /* CustomActivityIndicator.swift */,
 			);
 			path = View;
@@ -447,6 +450,7 @@
 				9C4437B224AAD8A2002A0BFA /* SceneDelegate.swift in Sources */,
 				9CC3E51724AB6B52003EE1AF /* MainTabRouter.swift in Sources */,
 				9CC3E52224AC2850003EE1AF /* HomeInteractor.swift in Sources */,
+				9C7549AE24B8183B00D20E16 /* TabBarButton.swift in Sources */,
 				9CB05E6A24B196C600500EDC /* BaseTableViewCell.swift in Sources */,
 				9CC3E52E24ACAC82003EE1AF /* SplashViewController.swift in Sources */,
 			);

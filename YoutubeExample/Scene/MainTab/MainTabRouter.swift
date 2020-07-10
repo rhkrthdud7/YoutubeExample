@@ -15,7 +15,7 @@ protocol MainTabInteractable: Interactable, HomeListener {
 }
 
 protocol MainTabViewControllable: ViewControllable {
-    func setViewControllers(viewControllers: [ViewControllable], animated: Bool)
+    func setViewControllers(viewControllers: [ViewControllable])
 }
 
 final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewControllable>, MainTabRouting {
@@ -46,7 +46,7 @@ final class MainTabRouter: ViewableRouter<MainTabInteractable, MainTabViewContro
 
         let navHome = UINavigationController(root: home.viewControllable)
         navHome.setNavigationBarHidden(true, animated: true)
-        viewController.setViewControllers(viewControllers: [navHome], animated: false)
+        viewController.setViewControllers(viewControllers: [navHome])
     }
 
 }

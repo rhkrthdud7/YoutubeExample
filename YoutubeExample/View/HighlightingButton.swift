@@ -9,19 +9,39 @@
 import UIKit
 
 class HighlightingButton: UIButton {
+    enum LayerShape {
+        case circle, square
+    }
+
     let layerHighlight = CALayer().then {
         $0.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
         $0.opacity = 0
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    let type: LayerShape
+
+    init(type: LayerShape = .circle) {
+        self.type = type
+        super.init(frame: .zero)
 
         layer.addSublayer(layerHighlight)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layerHighlight.frame = bounds
+
+        switch type {
+        case .circle:
+            layerHighlight.cornerRadius = bounds.height / 2
+        case .square:
+            layerHighlight.cornerRadius = 0
+        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -32,6 +52,12 @@ class HighlightingButton: UIButton {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+
+        hideLayerHighlight()
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
 
         hideLayerHighlight()
     }
@@ -52,12 +78,5 @@ class HighlightingButton: UIButton {
         animation.duration = 0.4
         layerHighlight.opacity = 0
         layerHighlight.add(animation, forKey: "opacity")
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layerHighlight.frame = bounds
-        layerHighlight.cornerRadius = bounds.height / 2
     }
 }

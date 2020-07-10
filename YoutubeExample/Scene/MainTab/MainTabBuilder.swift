@@ -44,12 +44,11 @@ final class MainTabBuilder: Builder<MainTabDependency>, MainTabBuildable {
             videoService: videoService
         )
         let viewController = MainTabViewController()
-        viewController.tabBar.isOpaque = true
-        viewController.tabBar.isTranslucent = false
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .crossDissolve
         let interactor = MainTabInteractor(presenter: viewController)
         interactor.listener = listener
+        viewController.reactor = interactor
         let homeBuilder = HomeBuilder(dependency: component)
         return MainTabRouter(
             interactor: interactor,
