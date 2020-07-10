@@ -7,17 +7,18 @@
 //
 
 import RIBs
+import ReactorKit
 import RxSwift
 
-protocol MainTabRouting: ViewableRouting {}
+protocol MainTabRouting: ViewableRouting { }
 
 protocol MainTabPresentable: Presentable {
     var listener: MainTabPresentableListener? { get set }
 }
 
-protocol MainTabListener: class {}
+protocol MainTabListener: class { }
 
-final class MainTabInteractor: PresentableInteractor<MainTabPresentable>, MainTabInteractable, MainTabPresentableListener {
+final class MainTabInteractor: PresentableInteractor<MainTabPresentable>, MainTabInteractable, MainTabPresentableListener, Reactor {
 
     weak var router: MainTabRouting?
     weak var listener: MainTabListener?
@@ -33,5 +34,34 @@ final class MainTabInteractor: PresentableInteractor<MainTabPresentable>, MainTa
 
     override func willResignActive() {
         super.willResignActive()
+    }
+
+    // MARK: - Reactor
+    var initialState = State()
+
+    struct State {
+        var selectedIndex: Int = 0
+    }
+    enum Action {
+        case tapButton(Int)
+    }
+    enum Mutation {
+        case setIndex(Int)
+    }
+
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .tapButton(let index):
+            return Observable.just(Mutation.setIndex(index))
+        }
+    }
+
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        switch mutation {
+        case .setIndex(let index):
+            state.selectedIndex = index
+        }
+        return state
     }
 }
